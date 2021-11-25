@@ -1,0 +1,50 @@
+#News Object
+type News {
+    #News ID logical id
+    newsItemId: ID
+    #Title of the news
+    title:String!
+    #News published Date
+    publishedDate:String
+    #News Description or the contecnt
+    description:String
+    #News attached image referances
+    images:[Image]
+}
+#Image Object represent image referance details
+type Image {
+    #Image Logical Id
+    imageId: ID
+    #image location according to image storing statergy it can be url
+    location:String
+}
+#News Input Object the object to use create news
+input NewsInput{
+    #Title
+    title :String!
+    #Published Date
+    publishedDate: String!
+    #content
+    description : String!
+}
+
+#News API
+type Query {
+    #fetch all news wcich news title contains the string
+    newsByKeyWord(keyWord : String):[News]
+    #fetch a single news related to news Id
+    news(id: ID): News
+}
+
+type Mutation {
+    #APi used to create News
+    createNewsItem(newsInput: NewsInput!): News
+    #API for update exisiting news Item
+    updateNewsItem(newsInput: NewsInput!, id: ID!): News
+
+}
+
+type Subscription {
+    #Subscribe news details
+    news:[News]
+}

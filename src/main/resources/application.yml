@@ -1,0 +1,57 @@
+server:
+  port: 8080
+
+download:
+  file:
+    directory: C:\Users\Subash\Desktop\images\
+    max:
+      size:
+        mb: 4
+    retry:
+      max:
+        limit: 4
+
+
+scheduler:
+  image:
+    downloader:
+      fixed:
+        rate:
+          milliseconds: 10000
+        delay:
+          milliseconds: 10000
+news:
+  feed:
+    reading:
+      max:
+        messages:
+          per:
+            poll: 10
+      period: 300000
+      url: http://feeds.nos.nl/nosjournaal?format=xml
+
+jpa:
+  hibernate:
+    ddl-auto: none
+
+graphql:
+  servlet:
+    mapping: /graphql
+    enabled: true
+    exception-handlers-enabled: true
+    context-setting: per_query_with_instrumentation
+    tracingEnabled: false
+
+graphiql:
+  mapping: /graphiql
+  endpoint:
+    graphql: /graphql
+    subscriptions: /subscriptions
+  subscriptions:
+    reconnect: false
+    timeout: 30
+  enabled: true
+  pageTitle: GraphiQL
+  cdn:
+    enabled: false
+    version: 0.13.0
