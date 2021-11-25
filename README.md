@@ -1,4 +1,4 @@
-# gapstars-coding-assignment
+# News Reader
 
 
 
